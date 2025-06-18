@@ -1,0 +1,52 @@
+{% extends "crudapp/base.html" %}
+{% block title %}CRUD{% endblock title %}
+
+{% block main_content %}
+<section class="bg-green-200 border border-black ml-16 py-12 m-16">
+    <div class="text-center text-6xl font-bold mb-12">
+        <h3>Student Record Management</h3>
+    </div>
+
+    <div class="row m-8 ml-40">
+      <div class="m-4">
+        <a href = "{% url "add-student" %}" class = 'bg-blue-400 pt-4 pr-8 pb-4 pl-8 font-bold text-lg rounded-md hover:bg-red-200'>Add</a>
+      </div>
+    </div>
+    <div class="w-3/4 mx-auto">
+        <table class="w-full text-2xl border-separate border-spacing-y-4 bg-white text-center">
+            <thead class="bg-green-300">
+                <tr>
+                    <th class="p-4">s.no</th>
+                    <th class="p-4">rollno</th>
+                    <th class="p-4">Name</th>
+                    <th class="p-4">class</th>
+                    <th class="p-4">city</th>
+                    <th class="p-4">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stud in studata %}
+                <tr class="bg-gray-200">
+                    <th class="p-4" scope="row">{{forloop.counter}}</th>
+                    <td class="p-4">{{stud.roll}}</td>
+                    <td class="p-4">{{stud.name}}</td>
+                    <td class="p-4">{{stud.cls}}</td>
+                    <td class="p-4">{{stud.city}}</td>
+                    <td class="p-4 flex justify-center gap-4">
+                        <a href="{% url 'edit-student' stud.roll %}" class="bg-green-600 hover:bg-blue-700 text-white py-2 text-lg px-4 rounded-lg shadow-md transition duration-300">Edit</a>
+                        <form action="{% url "delete-student" %}" method='POST'>
+                            {% csrf_token %}
+                            <input type="hidden" name="roll" value = {{stud.roll}}>
+                            <input type="submit" value= "delete" class="bg-red-600 hover:bg-blue-700 text-white py-2 text-lg px-4 rounded-lg shadow-md transition duration-300">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<div class="text-center mt-48 text-lg text-bold">
+    createBy@Raja tenguriya
+</div>
+{% endblock main_content %}

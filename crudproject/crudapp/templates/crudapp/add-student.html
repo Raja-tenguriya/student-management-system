@@ -1,0 +1,22 @@
+{% extends "crudapp/base.html" %}
+{% block title %}add student{% endblock title %}
+
+{% block main_content %}
+<section class="bg-green-200 border border-black ml-16 py-12 m-16">
+    <div class="text-center text-6xl font-bold mb-12">
+        <h3>Student Record Management</h3>
+    </div>
+
+    <div class="row m-16 ml-40">
+      <div class="m-16">
+        <form action="" method = "POST" class="m-16">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-2 text-lg px-6 rounded-lg shadow-md transition duration-300 ml-12 mt-2">
+        </form>
+      </div>
+    </div>
+</section>
+{% endblock main_content %}
+
+

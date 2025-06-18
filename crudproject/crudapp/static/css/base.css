@@ -1,0 +1,11 @@
+body{
+    background-color:  rgb(179, 246, 191);
+}
+
+.col-sm-8 border{
+    border: 41px solid black;
+}
+
+/* .border{
+    border: 2px solid black;
+} */
